@@ -71,9 +71,11 @@ const useNews = (category) => {
                 localStorage.setItem(`timestamp_${category}`, Date.now());
                 setLoading(false);
               } else {
+                setLoading(false);
                 showNotification("error", response?.data?.message || "Something Went Wrong!");
               }
             } catch (error) {
+              setLoading(false);
               showNotification("error", error?.message || "Something Went Wrong!");
               setIsError(true);
               setRetryFunction(() => () => fetchArticles(term));
@@ -100,11 +102,13 @@ const useNews = (category) => {
               addToHistory(newItem);
               updateSearchHistory(term);
             } else {
+              setLoading(false)
               showNotification("error", response?.data?.message || "Something Went Wrong!");
             }
           } catch (error) {
             showNotification("error", error?.message || "Something Went Wrong!");
             setIsError(true);
+            setLoading(false)
             setRetryFunction(() => () => fetchArticles(term));
           }
         }
@@ -190,9 +194,11 @@ const useNews = (category) => {
             setTotalResults(response?.data?.totalResults);
             setIsLoading(false);
           } else {
+            setIsLoading(false);
             showNotification("error", response?.data?.message || "Something Went Wrong");
           }
         } catch (error) {
+          setIsLoading(false);
           showNotification("error", error?.message || "Something Went Wrong");
           setIsError(true);
           setRetryFunction(() => () => fetchMoreArticles());
