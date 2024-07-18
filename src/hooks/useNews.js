@@ -76,7 +76,7 @@ const useNews = (category) => {
               }
             } catch (error) {
               setLoading(false);
-              showNotification("error", error?.message || "Something Went Wrong!");
+              showNotification("error", error?.response?.message || "Something Went Wrong!");
               setIsError(true);
               setRetryFunction(() => () => fetchArticles(term));
             }
@@ -106,7 +106,7 @@ const useNews = (category) => {
               showNotification("error", response?.data?.message || "Something Went Wrong!");
             }
           } catch (error) {
-            showNotification("error", error?.message || "Something Went Wrong!");
+            showNotification("error", error?.response?.message || "Something Went Wrong!");
             setIsError(true);
             setLoading(false)
             setRetryFunction(() => () => fetchArticles(term));
@@ -174,7 +174,7 @@ const useNews = (category) => {
             showNotification("error", response?.data?.message || "Something Went Wrong!");
           }
         } catch (error) {
-          showNotification("error", error?.message || "Something Went Wrong!");
+          showNotification("error", error?.response?.message || "Something Went Wrong!");
           setIsError(true);
           setRetryFunction(() => () => fetchMoreArticles());
         }
@@ -199,7 +199,7 @@ const useNews = (category) => {
           }
         } catch (error) {
           setIsLoading(false);
-          showNotification("error", error?.message || "Something Went Wrong");
+          showNotification("error", error?.response?.message || "Something Went Wrong");
           setIsError(true);
           setRetryFunction(() => () => fetchMoreArticles());
         }
