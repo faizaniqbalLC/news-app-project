@@ -114,9 +114,7 @@ const News = (props) => {
           </div>
         )}
         <div className="mb-6 grid gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {(searchTerm.trim() === "" ? articles : searchedArticles).length ===
-            0 &&
-            !loading && (
+          {((searchTerm.trim() === "" ? articles : searchedArticles).length ===0 &&!loading&&isError===false) && (
               <div className="col-span-full flex h-[60vh] items-center justify-center">
                 <p className="text-red-500 dark:text-red-500">No data found</p>
               </div>
